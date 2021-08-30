@@ -5,12 +5,16 @@ services:
     image: b4bz/homer
     #To build from source, comment previous line and uncomment below
     #build: .
-    container_name: homer
+#    container_name: homer
     volumes:
-      - /your/local/assets/:/www/assets
-    ports:
-      - 8080:8080
+      - ./public-huwi/assets/:/www/assets
+#    ports:
+#      - 8080:8080
     #environment:
     #  - UID=1000
     #  - GID=1000
-    restart: unless-stopped
+#    restart: unless-stopped
+    labels:
+      - "traefik.enable=True"
+      - "traefik.http.routers.homer.rule=Host(`homer.huwi.rocks`)"
+ 
